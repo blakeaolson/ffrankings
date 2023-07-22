@@ -5,7 +5,6 @@ import {
   Text
 } from '@chakra-ui/react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-// import { GrMail } from 'grommet-icons';
 
 export default function Footer() {
   return (
@@ -26,9 +25,6 @@ export default function Footer() {
         </a>
         <a href="https://github.com/blakeaolson">
           <FaGithub/>
-        </a>
-        <a href = "mailto: blakeaolson1@gmail.com">
-          {/* <GrMail/> */}
         </a>
         </Stack>
       </Container>

@@ -55,9 +55,9 @@ const About = () =>{
             Although the model is relatively accurate at predicting future PPR score, there are a few limitations.
             The model was trained by gathering only the top 250 players for any given year. If a player did not make
             the top 250 in the following year they would be taken out of the dataset. That being said, these rankings
-            make the assumption that all the players in the list will make the top 250 players again, which almost certainly
-            will not happen. Injuries are also another factor that are hard to predict. This model does not take injuries
-            into account when computing future ppr score.
+            make the assumption that all the players in the list will make the top 250 players again. Injuries are also
+            another factor that are hard to predict. This model does not take injuries into account when computing future ppr score.
+            If a player was injured the year prior to the rankings they will not be ranked.
           </p>
         </Box>
         </Box>
