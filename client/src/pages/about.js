@@ -36,13 +36,10 @@ const About = () =>{
             Linear regression was used as the primary model to predict future PPR score. This was implemented through sci-kit learn by filtering
             the raw data, processing it, and feeding it into a built in linear regression library. Linear regression works by finding 
             the most optimal combination of weights associated with given feature values; This is done by minimizing a loss function.
-            For these models, the function to benchmark error and accuracy was the root mean squared error.
+            For these models, the function to benchmark error and accuracy was the root mean squared error. In order to maximize the best fit with the data, an iterative process was used to select inputs for data 
+            that would most efficiently minimze the root mean squared error.
           </p>
         </Box>
-        {/* <p>
-            In order to maximize the best fit with the data, an iterative process was used to select inputs for data 
-            that would most efficiently minimze the root mean squared error.
-        </p> */}
         <Box marginTop="21">
           <Heading variant='section-title'>QB Model</Heading>
           <Heading variant='section-title'>RB Model</Heading>
