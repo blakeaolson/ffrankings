@@ -25,10 +25,8 @@ const About = () =>{
         <Box marginTop="30">
           <Heading variant='section-title'>Machine Learning</Heading>
           <p> These rankings are based off of a machine learning model that was trained by extensive web scraping of the past 20 years of football.
-            In order to predict fantasy points for the upcoming season, players were given labels of their total PPR points in the following season. Through this
-            labeling, a 60% accuracy was achieved based on the Root Mean Square Error and the
-            average value of each label. A model was created for each position and for each scoring method due to 
-            certain statistics varying in importance.
+            In order to predict fantasy points for the upcoming season, players were given labels of their total PPR points in the following season. Error, calculated by dividing the Root Mean Squared Error by the average PPR points, 
+            was reduced to 37.21%. A model was created for each position and for each scoring method due to certain statistics varying in importance.
             </p>
         </Box>
         <Box marginTop="21">
