@@ -58,7 +58,6 @@ export default function NavBar() {
               > About </Button>
             </HStack>
           </HStack>
-          <SwitchTheme></SwitchTheme>
         </Flex>
 
         {isOpen ? (
