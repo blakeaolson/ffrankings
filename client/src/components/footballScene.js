@@ -7,11 +7,10 @@ export default function FootballScene() {
   return (
     <Container height="35vh">
       <Canvas>
-        <PerspectiveCamera makeDefault fov={20} position={[-0.6, 0.6, 0.6]} />
+        <PerspectiveCamera makeDefault fov={30} position={[-30, 30, 30]} />
         <Football></Football>
         <OrbitControls/>
-        <ambientLight/>
-        <pointLight position={[1, 5, 1]} intensity={3}/>
+        <ambientLight intensity={0.25}/>
       </Canvas>
     </Container>
     
