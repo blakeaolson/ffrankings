@@ -21,54 +21,19 @@ import { useState } from 'react';
 
 const Rankings = () =>{
   const [tableData, setTableData] = useState([]);
-  const [tableDataQB, setTableDataQB] = useState([]);
-  const [tableDataRB, setTableDataRB] = useState([]);
-  const [tableDataWR, setTableDataWR] = useState([]);
-  const [tableDataTE, setTableDataTE] = useState([]);
-  const [tableDataFlex, setTableDataFlex] = useState([]);
-  const [tableDataOverall, setTableDataOverall] =  useState([]);
-
   const [isLoading, setLoading] = useState(true);
-  const [activeButton, setActiveButton] = useState("QB");
+  const [currentPosition, setCurrentPosition] = useState("qb");
 
   useEffect(() =>{
     const fetchData = async () => {
-      const initialResult = await fetch('http://localhost:3001/flex_data/');
-      const jsonFlexResult = await initialResult.json();
-      jsonFlexResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
-      setTableDataFlex(jsonFlexResult);
-      
-      const overallResult = await fetch('http://localhost:3001/overall_data/');
-      const jsonOverallResult = await overallResult.json();
-      jsonOverallResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
-      setTableDataOverall(jsonOverallResult);
-      
-      const qbResult = await fetch('http://localhost:3001/qb_data/');
-      const jsonQBResult = await qbResult.json();
-      jsonQBResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
-      setTableDataQB(jsonQBResult);
-      setTableData(jsonQBResult);
+      const initialResult = await fetch(`http://localhost:3001/${currentPosition}_data/`);
+      const jsonResult = await initialResult.json();
+      jsonResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
+      setTableData(jsonResult);
       setLoading(false);
-
-      const wrResult = await fetch('http://localhost:3001/wr_data/');
-      const jsonWRResult = await wrResult.json();
-      jsonWRResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
-      setTableDataWR(jsonWRResult);
-
-      const rbResult = await fetch('http://localhost:3001/rb_data/');
-      const jsonRBResult = await rbResult.json();
-      jsonRBResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
-      setTableDataRB(jsonRBResult);
-
-      const teResult = await fetch('http://localhost:3001/te_data/');
-      const jsonTEResult = await teResult.json();
-      jsonTEResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
-      setTableDataTE(jsonTEResult);
-
-
     }
     fetchData();
-  }, [])
+  }, [currentPosition])
   
   const variants = {
     hidden: { opacity: 0, x: 0, y: 20 },
@@ -104,48 +69,48 @@ const Rankings = () =>{
           <Button 
             size='sm' 
             variant='ghost' 
-            textColor={activeButton === "Overall" ? "white" : "#9eacbe"} 
-            onClick={() => {setTableData(tableDataOverall); setActiveButton("Overall")}}
+            textColor={currentPosition === "overall" ? "white" : "#9eacbe"} 
+            onClick={() => {setCurrentPosition("overall")}}
           > 
             Overall
           </Button>
           <Button 
             size='sm' 
             variant='ghost' 
-            textColor={activeButton === "QB" ? "white" : "#9eacbe"} 
-            onClick={() => {setTableData(tableDataQB); setActiveButton("QB")}}
+            textColor={currentPosition === "qb" ? "white" : "#9eacbe"} 
+            onClick={() => {setCurrentPosition("qb")}}
           > 
             QB
           </Button>
           <Button 
             size='sm' 
             variant='ghost' 
-            textColor={activeButton === "RB" ? "white" : "#9eacbe"} 
-            onClick={() => {setTableData(tableDataRB); setActiveButton("RB")}}
+            textColor={currentPosition === "rb" ? "white" : "#9eacbe"} 
+            onClick={() => {setCurrentPosition("rb")}}
           > 
             RB
           </Button>
           <Button 
             size='sm' 
             variant='ghost' 
-            textColor={activeButton === "WR" ? "white" : "#9eacbe"} 
-            onClick={() => {setTableData(tableDataWR); setActiveButton("WR")}}
+            textColor={currentPosition === "wr" ? "white" : "#9eacbe"} 
+            onClick={() => {setCurrentPosition("wr")}}
           > 
             WR
           </Button>
           <Button 
             size='sm' 
             variant='ghost' 
-            textColor={activeButton === "TE" ? "white" : "#9eacbe"} 
-            onClick={() => {setTableData(tableDataTE); setActiveButton("TE")}}
+            textColor={currentPosition === "te" ? "white" : "#9eacbe"} 
+            onClick={() => {setCurrentPosition("te")}}
           > 
             TE
           </Button>
           <Button 
             size='sm' 
             variant='ghost' 
-            textColor={activeButton === "Flex" ? "white" : "#9eacbe"} 
-            onClick={() => {setTableData(tableDataFlex); setActiveButton("Flex")}}
+            textColor={currentPosition === "flex" ? "white" : "#9eacbe"} 
+            onClick={() => {setCurrentPosition("flex")}}
           > 
             Flex
           </Button>
