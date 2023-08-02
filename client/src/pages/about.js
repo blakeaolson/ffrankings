@@ -41,10 +41,6 @@ const About = () =>{
           </p>
         </Box>
         <Box marginTop="21">
-          <Heading variant='section-title'>QB Model</Heading>
-          <Heading variant='section-title'>RB Model</Heading>
-          <Heading variant='section-title'>WR Model</Heading>
-          <Heading variant='section-title'>TE Model</Heading>
           <Heading variant='section-title'>Limitations</Heading>
           <Box marginTop="21">
           <p>

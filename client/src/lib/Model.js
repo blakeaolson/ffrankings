@@ -9,12 +9,12 @@ export default function Football(){
     if (!meshRef.current){
       return;
     }
-    meshRef.current.rotation.z -= 0.03;
+    meshRef.current.rotation.x -= 0.03;
   });
 
   const { scene } = useLoader(
     GLTFLoader,
-    'football.glb'
+    'nfl-football-compressed.glb'
   );
   return <primitive object={scene} ref={meshRef}/>;
 }

@@ -19,6 +19,10 @@ db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Database'));
 app.use(express.json());
 
+const flexRouter = require('./routes/flex_data');
+app.use('/flex_data', flexRouter);
+const overallRouter = require('./routes/overall_data');
+app.use('/overall_data', overallRouter);
 const rbRouter = require('./routes/rb_data');
 app.use('/rb_data', rbRouter);
 const qbRouter = require('./routes/qb_data');

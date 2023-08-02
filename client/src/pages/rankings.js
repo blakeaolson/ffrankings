@@ -25,22 +25,30 @@ const Rankings = () =>{
   const [tableDataRB, setTableDataRB] = useState([]);
   const [tableDataWR, setTableDataWR] = useState([]);
   const [tableDataTE, setTableDataTE] = useState([]);
+  const [tableDataFlex, setTableDataFlex] = useState([]);
+  const [tableDataOverall, setTableDataOverall] =  useState([]);
 
   const [isLoading, setLoading] = useState(true);
+  const [activeButton, setActiveButton] = useState("QB");
 
   useEffect(() =>{
     const fetchData = async () => {
-      const initialResult = await fetch('http://localhost:3001/qb_data/');
-      const jsonResult = await initialResult.json();
+      const initialResult = await fetch('http://localhost:3001/flex_data/');
+      const jsonFlexResult = await initialResult.json();
+      jsonFlexResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
+      setTableDataFlex(jsonFlexResult);
       
-      jsonResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
-      setTableData(jsonResult);
-      setLoading(false);
-
+      const overallResult = await fetch('http://localhost:3001/overall_data/');
+      const jsonOverallResult = await overallResult.json();
+      jsonOverallResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
+      setTableDataOverall(jsonOverallResult);
+      
       const qbResult = await fetch('http://localhost:3001/qb_data/');
       const jsonQBResult = await qbResult.json();
       jsonQBResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
       setTableDataQB(jsonQBResult);
+      setTableData(jsonQBResult);
+      setLoading(false);
 
       const wrResult = await fetch('http://localhost:3001/wr_data/');
       const jsonWRResult = await wrResult.json();
@@ -56,6 +64,8 @@ const Rankings = () =>{
       const jsonTEResult = await teResult.json();
       jsonTEResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
       setTableDataTE(jsonTEResult);
+
+
     }
     fetchData();
   }, [])
@@ -91,11 +101,54 @@ const Rankings = () =>{
       <Container maxW='2xl' marginTop={30}>
         <Divider marginBottom={1}/>
         <HStack>
-          <Button size='sm' variant='ghost'> Overall</Button>
-          <Button size='sm' variant='ghost' onClick={() => setTableData(tableDataQB)}>QB</Button>
-          <Button size='sm' variant='ghost' onClick={() => setTableData(tableDataRB)}>RB</Button>
-          <Button size='sm' variant='ghost' onClick={() => setTableData(tableDataWR)}>WR</Button>
-          <Button size='sm' variant='ghost' onClick={() => setTableData(tableDataTE)}>TE</Button>
+          <Button 
+            size='sm' 
+            variant='ghost' 
+            textColor={activeButton === "Overall" ? "white" : "#9eacbe"} 
+            onClick={() => {setTableData(tableDataOverall); setActiveButton("Overall")}}
+          > 
+            Overall
+          </Button>
+          <Button 
+            size='sm' 
+            variant='ghost' 
+            textColor={activeButton === "QB" ? "white" : "#9eacbe"} 
+            onClick={() => {setTableData(tableDataQB); setActiveButton("QB")}}
+          > 
+            QB
+          </Button>
+          <Button 
+            size='sm' 
+            variant='ghost' 
+            textColor={activeButton === "RB" ? "white" : "#9eacbe"} 
+            onClick={() => {setTableData(tableDataRB); setActiveButton("RB")}}
+          > 
+            RB
+          </Button>
+          <Button 
+            size='sm' 
+            variant='ghost' 
+            textColor={activeButton === "WR" ? "white" : "#9eacbe"} 
+            onClick={() => {setTableData(tableDataWR); setActiveButton("WR")}}
+          > 
+            WR
+          </Button>
+          <Button 
+            size='sm' 
+            variant='ghost' 
+            textColor={activeButton === "TE" ? "white" : "#9eacbe"} 
+            onClick={() => {setTableData(tableDataTE); setActiveButton("TE")}}
+          > 
+            TE
+          </Button>
+          <Button 
+            size='sm' 
+            variant='ghost' 
+            textColor={activeButton === "Flex" ? "white" : "#9eacbe"} 
+            onClick={() => {setTableData(tableDataFlex); setActiveButton("Flex")}}
+          > 
+            Flex
+          </Button>
         </HStack>
         <Divider marginTop={1}/>
       </Container>
