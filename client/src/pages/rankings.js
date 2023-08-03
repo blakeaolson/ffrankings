@@ -26,7 +26,7 @@ const Rankings = () =>{
 
   useEffect(() =>{
     const fetchData = async () => {
-      const initialResult = await fetch(`http://localhost:3001/${currentPosition}_data/`);
+      const initialResult = await fetch(`https://ffrankings-b2a5acc9f2c1.herokuapp.com/${currentPosition}_data`);
       const jsonResult = await initialResult.json();
       jsonResult.sort((a, b) => (a.rank > b.rank) ? 1 : -1);
       setTableData(jsonResult);
