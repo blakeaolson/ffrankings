@@ -10,9 +10,10 @@ app.use(
     origin: "http://localhost:3000",
   })
 )
+const uri = process.env.MONGODB_URI || process.env.DATABASE_URL;
 
 mongoose.set('strictQuery', false);
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(uri);
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
