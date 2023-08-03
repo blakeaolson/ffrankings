@@ -71,6 +71,12 @@ export default function NavBar() {
               </Button> */}
               <Button 
                 variant='ghost' 
+                onClick={ () => routeChange('/')}
+                fontWeight={500}
+                > Home 
+              </Button>
+              <Button 
+                variant='ghost' 
                 onClick={ () => routeChange('./about')}
                 fontWeight={500}
                 > About 
