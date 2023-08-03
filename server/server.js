@@ -7,7 +7,7 @@ const cors = require('cors');
 
 app.use(
   cors({
-    origin: "https://ffrankings-frontend.web.app/",
+    origin: "https://ffrankings-frontend.web.app",
   })
 )
 const uri = process.env.MONGODB_URI || process.env.DATABASE_URL;
